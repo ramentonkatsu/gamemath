@@ -88,12 +88,14 @@ typedef struct mat4{
 void Transpose(const float *srcMat, float *dstMat, int srcRows, int srcCols);
 bool Multiply(float* out, const float* matA, int aRows, int aCols, const float* matB, int bRows, int bCols);
 float Determinant(const mat2& matrix);
+void Cofactor(float* out, const float* minor, int rows, int cols);
 
 mat2 Transpose(const mat2& matrix);
 mat2 operator*(const mat2& matrix, float scalar);
 mat2 operator*(const mat2& matA, const mat2& matB);
 mat2 Cut(const mat3& mat, int row, int col);
 mat2 Minor(const mat2& mat);
+mat2 Cofactor(const mat2& mat);
 std::ostream& operator<<(std::ostream& out, const mat2& m);
 
 
@@ -101,6 +103,7 @@ mat3 Transpose(const mat3& matrix);
 mat3 operator*(const mat3& matrix, float scalar);
 mat3 operator*(const mat3& matA, const mat3& matB);
 mat3 Minor(const mat3& mat);
+mat3 Cofactor(const mat3& mat);
 std::ostream& operator<<(std::ostream& out, const mat3& m);
 
 mat4 Transpose(const mat4& matrix);

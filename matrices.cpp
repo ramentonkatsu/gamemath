@@ -36,6 +36,16 @@ bool Multiply(float* out, const float *matA, int aRows, int aCols, const float *
 float Determinant(const mat2& matrix){
   return matrix._11 * matrix._22 - matrix._12 * matrix._21;
 }
+void Cofactor(float* out, const float* minor, int rows, int cols){
+  for (int i = 0; i < rows; ++i){
+    for (int j = 0; j < cols; ++j){
+      int t = cols * j + i;
+      int s = cols * j + i;
+      float sign = powf(-1.0f, i + j);
+      out[t] = minor[s] * sign;
+    }
+  }
+}
 
 mat2 Transpose(const mat2& matrix){
   mat2 result;
@@ -75,6 +85,11 @@ mat2 Minor(const mat2& mat){
     mat._12, mat._11
   );
 }
+mat2 Cofactor(const mat2& mat){
+  mat2 result;
+  Cofactor(result.asArray, Minor(mat).asArray,2,2);
+  return result;
+}
 std::ostream& operator<<(std::ostream& out, const mat2& m){
   return out << m._11 << " " << m._12 << "\n"
              << m._21 << " " << m._22;
@@ -104,6 +119,11 @@ mat3 Minor(const mat3& mat){
       result[i][j] = Determinant(Cut(mat, i, j));
     }
   }
+  return result;
+}
+mat3 Cofactor(const mat3& mat){
+  mat3 result;
+  Cofactor(result.asArray, Minor(mat).asArray,3,3);
   return result;
 }
 std::ostream& operator<<(std::ostream& out, const mat3& m){

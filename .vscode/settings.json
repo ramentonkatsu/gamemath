@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.rpy": "renpy",
+        "cfloat": "cpp"
+    }
+}
